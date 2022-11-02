@@ -5,21 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>BuzzQuizz</title>
     <link rel="stylesheet" href="resetar.css" />
     <link rel="stylesheet" href="estilos.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
-    <title>BuzzQuizz</title>
 </head>
 
 <body>
     <div class="cabecalho">
         <div>BuzzQuizz</div>
     </div>
-    <div class="primeiraTela">
+    <div class="primeiraTela atual">
         <div class="nossosQuizzes">
             <div class="criarQuiz">
                 <div class="criarTexto"><span>Você não criou nenhum quizz ainda :(</span></div>
@@ -35,8 +34,22 @@
         </div>
         <div class="todosQuizzes"></div>
     </div>
-    <div class="segundaTela"></div>
-    <div class="terceiraTela"></div>
+    <div class="segundaTela desativada"></div>
+    <div class="terceiraTela desativada">
+        <div class="infoQuizz atual">
+            <div class="infoTexto">Comece pelo começo</div>
+            <div class="infoDados">
+                <div><input class="infoTitulo" type="text" placeholder="Título do seu quizz"></div>
+                <div><input class="infoUrl" type="url" placeholder="URL da imagem do seu quizz"></div>
+                <div><input class="infoPerguntas" type="number" placeholder="Quantidade de perguntas do quizz"></div>
+                <div><input class="infoNiveis" type="number" placeholder="Quantidade de níveis do quizz"></div>
+            </div>
+            <div class="proxEtapa"><button class="botaoTerceiraTela" onclick="telaPerguntaQuizz()">Prosseguir pra criar perguntas</button></div>
+        </div>
+        <div class="perguntaQuizz desativada"></div>
+        <div class="niveisQuizz desativada"></div>
+        <div class="sucessoQuizz desativada"></div>
+    </div>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="script.js"></script>
 </body>
