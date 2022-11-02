@@ -1,12 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="resetar.css" />
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet" />
+    <title>BuzzQuizz</title>
 </head>
+
 <body>
-    
+    <div class="cabecalho">
+        <div>BuzzQuizz</div>
+    </div>
+    <div class="primeiraTela">
+        <div class="nossosQuizzes">
+            <div class="criarQuiz">
+                <div class="criarTexto"><span>Você não criou nenhum quizz ainda :(</span></div>
+                <div><button onclick="terceiraTela()">Criar Quizz</button></div>
+            </div>
+            <div class="seusQuizzes">
+                <div class="tituloNossosQuizzes">
+                    <span>Seus Quizzes</span>
+                    <ion-icon class="addQuizz" name="add-circle-sharp" onclick="terceiraTela()"></ion-icon>
+                </div>
+                <div class="quizzesprontos"></div>
+            </div>
+        </div>
+        <div class="todosQuizzes"></div>
+    </div>
+    <div class="segundaTela"></div>
+    <div class="terceiraTela"></div>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
