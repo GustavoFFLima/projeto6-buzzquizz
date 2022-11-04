@@ -40,16 +40,49 @@
         <div class="infoQuizz atual">
             <div class="infoTexto">Comece pelo começo</div>
             <div class="infoDados">
-                <div><input class="infoTitulo" type="text" placeholder="Título do seu quizz"></div>
-                <div><input class="infoUrl" type="url" placeholder="URL da imagem do seu quizz"></div>
-                <div><input class="infoPerguntas" type="number" placeholder="Quantidade de perguntas do quizz"></div>
-                <div><input class="infoNiveis" type="number" placeholder="Quantidade de níveis do quizz"></div>
+                <div><input class="infoTitulo Tela31" type="text" placeholder="Título do seu quizz"></div>
+                <div><input class="infoUrl Tela31" type="url" placeholder="URL da imagem do seu quizz"></div>
+                <div><input class="infoPerguntas Tela31" type="number" placeholder="Quantidade de perguntas do quizz"></div>
+                <div><input class="infoNiveis Tela31" type="number" placeholder="Quantidade de níveis do quizz"></div>
             </div>
-            <div class="proxEtapa"><button class="botaoTerceiraTela" onclick="telaPerguntaQuizz()">Prosseguir pra criar perguntas</button></div>
+            <div class="proxEtapa"><button class="botaoTerceiraTela" onclick="telaPerguntaQuizz()">Prosseguir pra criar
+                    perguntas</button></div>
         </div>
-        <div class="perguntaQuizz desativada"></div>
-        <div class="niveisQuizz desativada"></div>
-        <div class="sucessoQuizz desativada"></div>
+        <div class="perguntaQuizz desativada">
+            <div class="infoTexto">Crie suas perguntas</div>
+            <div class="perguntasInfo">
+                <div class="caixaUm">
+                    <div class="textoPergunta">Pergunta 1</div>
+                    <div><input class="Tela32" type="text" placeholder="Texto da pergunta"></div>
+                    <div><input class="Tela32" type="url" placeholder="Cor de fundo da pergunta"></div>
+                </div>
+                <div class="caixaUm">
+                    <div class="textoPergunta">Resposta correta</div>
+                    <div><input class="Tela32" type="number" placeholder="Resposta correta"></div>
+                    <div><input class="Tela32" type="number" placeholder="URL da imagem"></div>
+                </div>
+
+                
+                <div class="caixaDois">
+                    <div class="textoPergunta">Respostas incorretas</div>
+                    <div><input class="Tela32" type="number" placeholder="Resposta incorreta 1"></div>
+                    <div><input class="Tela32" type="number" placeholder="URL da imagem 1"></div>
+                </div>
+                <div class="caixaDois">
+                    <div><input class="Tela32" type="number" placeholder="Resposta incorreta 2"></div>
+                    <div><input class="Tela32" type="number" placeholder="URL da imagem 2"></div>
+                </div>
+                <div class="caixaDois">
+                    <div><input class="Tela32" type="number" placeholder="Resposta incorreta 3"></div>
+                    <div><input class="Tela32" type="number" placeholder="URL da imagem 3"></div>
+                </div>
+            </div>
+            <div class="proxEtapa"><button class="botaoTerceiraTela" onclick="telaPerguntaQuizz()">Prosseguir pra criar
+                    perguntas</button></div>
+        </div>
+    </div>
+    <div class="niveisQuizz desativada"></div>
+    <div class="sucessoQuizz desativada"></div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"> </script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
