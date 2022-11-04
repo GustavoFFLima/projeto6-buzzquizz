@@ -43,8 +43,9 @@ function renderizar () {
 
 
     function teste2(id) {
-        console.log(id);
-
+        axios
+            .get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`)
+            .then()
     }
 
 
