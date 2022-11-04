@@ -35,18 +35,21 @@ function renderizar() {
     for (let i = 0; i < todosQuizzes.length; i++) {
         let objeto = todosQuizzes[i];
 
-        rend.innerHTML += `<div class="teste" onclick = "teste2 (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/>  <p> ${objeto.title} </p> </div> </div>`;
+        rend.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/>  <p> ${objeto.title} </p> </div> </div>`;
 
     };
 };
 
 
+function segundaTela(id) {
+    console.log(id);
+
+}
 function teste2(id) {
     axios
         .get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`)
         .then()
 }
-
 
 function terceiraTela() {
     const paginaAtual = document.querySelector(".atual");
