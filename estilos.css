@@ -92,9 +92,6 @@ button {
 
 }
 
-.seusQuizzes {
-   
-}
 
 h1 {
     margin-top: 77px;
@@ -110,7 +107,7 @@ flex-wrap: wrap;
 
 }
 
-.todosQuizzes .teste img {
+.todosQuizzes .gameQuizzes img {
    
     margin-top: 12px;
     width: 340px;
@@ -120,7 +117,7 @@ flex-wrap: wrap;
 
 }
 
-.todosQuizzes .teste p{
+.todosQuizzes .gameQuizzes p{
     display: block;
     position: absolute;
     bottom: 0;
@@ -134,16 +131,10 @@ flex-wrap: wrap;
     text-align: center;
 }
 
-.todosQuizzes .teste {
+.todosQuizzes .gameQuizzes {
 position: relative;
 margin-left: 15px;
 
-}
-
-.todosQuizzes {}
-
-.desativada {
-    display: none;
 }
 
 .terceiraTela {
@@ -207,3 +198,7 @@ input::placeholder {
     font-size: 21px;
     line-height: 24.61px;
 }
+
+    .desativada {
+        display: none;
+    }
