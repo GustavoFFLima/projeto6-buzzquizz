@@ -116,7 +116,6 @@ flex-wrap: wrap;
     height: 181px;
     border-radius: 5px;
     -webkit-mask-image: linear-gradient(to top transparent 25% #0000 100%);
-
 }
 
 .todosQuizzes .gameQuizzes p{
@@ -240,3 +239,58 @@ input::placeholder {
 .desativada {
     display: none;
 }
+
+.segundaTela{
+
+};
+
+.segundaTela .partida{
+    height: 227px;
+    width: 1440px;
+    left: 0px;
+    top: 69px;
+
+};
+
+.segundaTela .partida .imagemLogo{
+    height: 227px;
+    width: 1440px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57));
+};
+
+.segundaTela .partida .tituloLogo{
+
+};
+
+.segundaTela .questoesQuizz{
+
+};
+
+.segundaTela .questoesQuizz .questaoPartida{
+
+};
+
+.segundaTela .questoesQuizz .questaoPartida .imagemQuestao{
+
+};
+
+.segundaTela .questoesQuizz .questaoPartida .imagemQuestao .tituloQuestao{
+
+};
+
+.segundaTela .questoesQuizz .questaoPartida .respostasQuizz{
+
+};
+
+.respostaPartida{
+    background-color: #EC362D;
+};
+.imagemResposta{
+    display: none;
+    width: 33px;
+    height: 18px;
+};
+
+.segundaTela .questoesQuizz .questaoPartida .respostasQuizz .respostaPartida .tituloResposta{
+    
+};

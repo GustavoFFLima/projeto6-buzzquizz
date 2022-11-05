@@ -42,16 +42,66 @@ function renderizar() {
 
 
 function segundaTela(id) {
-    console.log(id);
+    const paginaAtual = document.querySelector(".atual");
+    const paginaDesejada = document.querySelector(".segundaTela");
 
-}
-function teste2(id) {
+    paginaAtual.classList.add("desativada");
+    paginaAtual.classList.remove("atual");
+    paginaDesejada.classList.add("atual");
+    paginaDesejada.classList.remove("desativada");
+
     axios
         .get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`)
-        .then()
+        .then(renderizarSegundaTela)
 }
 
+function renderizarSegundaTela(resposta){
 
+    let rend = document.querySelector(".segundaTela");
+    rend.innerHTML = 
+    `<div class="partida">   
+        <img class="imagemLogo" src="${resposta.data.image}"/>  
+        <p class="tituloLogo">${resposta.data.tittle}</p> 
+    </div>
+    <div class="questoesQuizz"></div>`;
+
+    for(let i = 0; i < resposta.data.questions.length; i++) {
+        let rend2 = document.querySelector(".questoesQuizz");
+        rend2.innerHTML += 
+        `<div class="questaoPartida">   
+            <div class="imagemQuestao" style="background color: ${resposta.data.questions[i].color}">
+                <p class="tituloQuestao">${resposta.data.questions[i].title}</p> 
+            </div>  
+            <div class="respostasQuizz"></div>
+        </div>`;
+        console.log(resposta.data.questions);
+        console.log(resposta.data.questions[i].answers.length);
+        for(let g = 0; g < resposta.data.questions[i].answers.length; g++) {
+            let rend3 = document.querySelector(".questoesQuizz");
+            rend3.children[i].children[1].innerHTML += 
+            `<div class="respostaPartida" data-charactes="${resposta.data.questions[i].answers[g].isCorrectAnswer}" onclick="respostaCorreta(this)">
+                <img class="imagemResposta" src="${resposta.data.questions[i].answers[g].image}"/>
+                <p class="tituloResposta">${resposta.data.questions[i].answers[g].text}</p>
+            </div>`;
+        };
+    };
+
+};
+
+function respostaCorreta(selecionada) {
+    // function prato(itemClicado) {
+    //     const botaoSel = document.querySelector('.prato2');
+    //     if ( botaoSel !== null) {
+    //         botaoSel.classList.remove('prato2');
+    //         botaoSel.children[3].children[1].classList.add('prato1');
+    //     }
+    //     itemClicado.children[3].children[1].classList.toggle('prato1');
+    //     itemClicado.classList.toggle('prato2');
+    //     if (document.querySelector('.prato2') && document.querySelector('.bebida2') && document.querySelector('.sobremesa2')) {
+    //         document.querySelector('.botao').children[0].classList.add('comprafechada');
+    //     }
+    // }
+}
 
 function terceiraTela() {
     const paginaAtual = document.querySelector(".atual");
