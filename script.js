@@ -55,20 +55,20 @@ function segundaTela(id) {
         .then(renderizarSegundaTela)
 }
 
-function renderizarSegundaTela(resposta){
+function renderizarSegundaTela(resposta) {
 
     let rend = document.querySelector(".segundaTela");
-    rend.innerHTML = 
-    `<div class="partida">   
+    rend.innerHTML =
+        `<div class="partida">   
         <img class="imagemLogo" src="${resposta.data.image}"/>  
         <p class="tituloLogo">${resposta.data.tittle}</p> 
     </div>
     <div class="questoesQuizz"></div>`;
 
-    for(let i = 0; i < resposta.data.questions.length; i++) {
+    for (let i = 0; i < resposta.data.questions.length; i++) {
         let rend2 = document.querySelector(".questoesQuizz");
-        rend2.innerHTML += 
-        `<div class="questaoPartida">   
+        rend2.innerHTML +=
+            `<div class="questaoPartida">   
             <div class="imagemQuestao" style="background color: ${resposta.data.questions[i].color}">
                 <p class="tituloQuestao">${resposta.data.questions[i].title}</p> 
             </div>  
@@ -76,10 +76,10 @@ function renderizarSegundaTela(resposta){
         </div>`;
         console.log(resposta.data.questions);
         console.log(resposta.data.questions[i].answers.length);
-        for(let g = 0; g < resposta.data.questions[i].answers.length; g++) {
+        for (let g = 0; g < resposta.data.questions[i].answers.length; g++) {
             let rend3 = document.querySelector(".questoesQuizz");
-            rend3.children[i].children[1].innerHTML += 
-            `<div class="respostaPartida" data-charactes="${resposta.data.questions[i].answers[g].isCorrectAnswer}" onclick="respostaCorreta(this)">
+            rend3.children[i].children[1].innerHTML +=
+                `<div class="respostaPartida" data-charactes="${resposta.data.questions[i].answers[g].isCorrectAnswer}" onclick="respostaCorreta(this)">
                 <img class="imagemResposta" src="${resposta.data.questions[i].answers[g].image}"/>
                 <p class="tituloResposta">${resposta.data.questions[i].answers[g].text}</p>
             </div>`;
@@ -136,6 +136,11 @@ function telaPerguntaQuizz() {
 
     //Verificando condicoes dos inputs e armazenando na variavel
     if (titulo.length >= 20 && titulo.length <= 65 && perguntas >= 3 && niveis >= 2) {
+
+        if (checkUrl(url) == false) {
+            return alert("Informação errada! Ajuste para prosseguir.");
+        }
+
         informacoesQuizz = {
             title: titulo,
             image: url,
@@ -148,6 +153,16 @@ function telaPerguntaQuizz() {
         titleImage = informacoesQuizz;
     } else {
         alert("Informação errada! Ajuste para prosseguir.")
+    }
+}
+
+
+function checkUrl(string) {
+    try {
+        new URL(string)
+        return true;
+    } catch (err) {
+        return false;
     }
 }
 
@@ -217,7 +232,7 @@ function verificacaoPerguntasQuizz() {
         let image4 = document.querySelector(`.imagemTela34${i + 1}`).value;
         let letras = ['g', "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-
+       
         //verificacao do titulo, da cor e do texto e imagem das perguntas
         if (title.length < 20) {
             return alert("Informação errada! Ajuste para prosseguir.");
@@ -230,12 +245,13 @@ function verificacaoPerguntasQuizz() {
                 }
             }
 
-            if ((text1 !== '' && image1 !== '') && ((text2 !== '' && image2 !== '') || (text3 !== '' && image3 !== '') || (text4 !== '' && image4 !== ''))) {
-                console.log(title);
-                console.log(color);
+            if ((text1 !== '' && checkUrl(image1) == true && image1!='') && ((text2 !== '' && checkUrl(image2) == true && image2!='') || (text3 !== '' && checkUrl(image3) == true && image3!='') || (text4 !== '' && checkUrl(image4) == true && image4!=''))) {
+
             } else {
                 return alert("Informação errada! Ajuste para prosseguir.");
             }
+        } else {
+            return alert("Informação errada! Ajuste para prosseguir.");
         }
     }
 
