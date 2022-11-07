@@ -4,7 +4,9 @@ let quizzSelecionado = [];
 let niveldojogador = [];
 let sorteioQuestao = [];
 let arrayPost = {};
-let meusQuizzes = localStorage.getItem("id");
+let meusQuizzes = [];
+let listaSerializada = localStorage.getItem("id");
+meusQuizzes.push(listaSerializada);
 
 console.log(meusQuizzes);
 pegarQuizzes();
@@ -38,14 +40,12 @@ function renderizar() {
     for (let i = 0; i < todosQuizzes.length; i++) {
         let objeto = todosQuizzes[i];
 
-        if(objeto.id == meusQuizzes){
-            cabecalhoQuizz.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/><div class="degrade"></div>  <p> ${objeto.title} </p></div>`;
-        }else{
+        for ( let y = 0; y<meusQuizzes.length;y++){
+            if(objeto.id  == meusQuizzes[y]){
+                cabecalhoQuizz.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/><div class="degrade"></div>  <p> ${objeto.title} </p></div>`;
+        } else {
             rend.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/><div class="degrade"></div>  <p> ${objeto.title} </p></div>`;
         }
-
-       
-
     };
 };
 
@@ -253,28 +253,28 @@ function carregarPaginaPerguntaQuizz() {
         telaAtual.innerHTML += `<div class="perguntasInfo">
         <div class="caixaUm">
             <div class="textoPergunta">Pergunta ${i + 1}</div>
-            <div><input class="perguntaTela3${i + 1} Tela32" type="text" placeholder="Texto da pergunta"></div>
-            <div><input class="corTela3${i + 1} Tela32" type="text" placeholder="Cor de fundo da pergunta"></div>
+            <div class="testef"><input class="perguntaTela3${i + 1} Tela32" type="text" placeholder="Texto da pergunta"></div>
+            <div class="testef"><input class="corTela3${i + 1} Tela32" type="text" placeholder="Cor de fundo da pergunta"></div>
         </div>
         <div class="caixaUm">
             <div class="textoPergunta">Resposta correta</div>
-            <div><input class="respostaTela31${i + 1} Tela32" type="text" placeholder="Resposta correta"></div>
-            <div><input class="imagemTela31${i + 1} Tela32" type="url" placeholder="URL da imagem"></div>
+            <div class="testef"><input class="respostaTela31${i + 1} Tela32" type="text" placeholder="Resposta correta"></div>
+            <div class="testef"><input class="imagemTela31${i + 1} Tela32" type="url" placeholder="URL da imagem"></div>
         </div>
 
         
         <div class="caixaDois">
             <div class="textoPergunta">Respostas incorretas</div>
-            <div><input class="respostaTela32${i + 1} Tela32" type="text" placeholder="Resposta incorreta 1"></div>
-            <div><input class="imagemTela32${i + 1} Tela32" type="url" placeholder="URL da imagem 1"></div>
+            <div class="testef"><input class="respostaTela32${i + 1} Tela32" type="text" placeholder="Resposta incorreta 1"></div>
+            <div class="testef"><input class="imagemTela32${i + 1} Tela32" type="url" placeholder="URL da imagem 1"></div>
         </div>
         <div class="caixaDois">
-            <div><input class="respostaTela33${i + 1} Tela32" type="text" placeholder="Resposta incorreta 2"></div>
-            <div><input class="imagemTela33${i + 1} Tela32" type="url" placeholder="URL da imagem 2"></div>
+            <div class="testef"><input class="respostaTela33${i + 1} Tela32" type="text" placeholder="Resposta incorreta 2"></div>
+            <div class="testef"><input class="imagemTela33${i + 1} Tela32" type="url" placeholder="URL da imagem 2"></div>
         </div>
         <div class="caixaDois">
-            <div><input class="respostaTela34${i + 1} Tela32" type="text" placeholder="Resposta incorreta 3"></div>
-            <div><input class="imagemTela34${i + 1} Tela32" type="url" placeholder="URL da imagem 3"></div>
+            <div class="testef"><input class="respostaTela34${i + 1} Tela32" type="text" placeholder="Resposta incorreta 3"></div>
+            <div class="testef"><input class="imagemTela34${i + 1} Tela32" type="url" placeholder="URL da imagem 3"></div>
         </div>
     </div>`
     }
@@ -379,8 +379,12 @@ function telaNiveisQuizz() {
             image: image2,
             isCorrectAnswer: falso
         };
-
-        textoRespostas.push(arrayTemporario);
+        if(text2 =='' || image2 == ''){
+            
+        }else {
+            textoRespostas.push(arrayTemporario);
+        }
+        
 
         arrayTemporario = {
             text: text3,
@@ -388,7 +392,11 @@ function telaNiveisQuizz() {
             isCorrectAnswer: falso
         };
 
-        textoRespostas.push(arrayTemporario);
+        if(text3 =='' || image3 == ''){
+            
+        }else {
+            textoRespostas.push(arrayTemporario);
+        }
 
         arrayTemporario = {
             text: text4,
@@ -396,10 +404,16 @@ function telaNiveisQuizz() {
             isCorrectAnswer: falso
         };
 
-        textoRespostas.push(arrayTemporario);
+        if(text4 =='' || image4 == ''){
+            
+        }else {
+            textoRespostas.push(arrayTemporario);
+        }
 
         // Depois do textoRespostar obter as informacoes das 4 opcoes, joga para o Array answers
         answers.push(textoRespostas);
+
+        console.log(answers);
 
         // Zerar o array para ele rodar o proximo for sem elementos nele
         textoRespostas = [];
@@ -447,12 +461,12 @@ function carregarPaginaNiveisQuizz() {
         telaAtual.innerHTML += `<div class="caixaNivel">
         <div class="caixaTeste">
             <div class="textoPergunta">Nivel ${i + 1}</div>
-            <div><input class="tituloNivel${i + 1} Tela32" type="text" placeholder="Título do nível"></div>
-            <div><input class="acertoNivel${i + 1} Tela32" type="number" placeholder="% de acerto mínima">
+            <div class="testef"><input class="tituloNivel${i + 1} Tela32" type="text" placeholder="Título do nível"></div>
+            <div class="testef"><input class="acertoNivel${i + 1} Tela32" type="number" placeholder="% de acerto mínima">
             </div>
-            <div><input class="urlNivel${i + 1} Tela32" type="text" placeholder="URL da imagem do nível">
-            </div>
-            <div><input class="descricaoNivel${i + 1} Tela32" type="text" placeholder="Descrição do nível">
+            <div class="testef"><input class="urlNivel${i + 1} Tela32" type="text" placeholder="URL da imagem do nível">
+            </div class="testef">
+            <div class="testef"><input class="descricaoNivel${i + 1} Tela32" type="text" placeholder="Descrição do nível">
             </div>
         </div>
     </div>`}
@@ -523,8 +537,11 @@ function deuErro() {
 }
 
 function carregarTelaSucessoQuizz(resposta) {
-
-    localStorage.setItem("id", resposta.data.id);
+    console.log(resposta.data);
+    let idTeste = resposta.data.id;
+    meusQuizzes.push(idTeste);
+    const meusQuizzesSerializado = JSON.stringify(meusQuizzes); 
+    localStorage.setItem("id", meusQuizzesSerializado);
 
     const paginaAtual = document.querySelector(".niveisQuizz");
     const paginaDesejada = document.querySelector(".sucessoQuizz");
@@ -537,7 +554,8 @@ function carregarTelaSucessoQuizz(resposta) {
     carregarPaginaSucessoQuizz();
 }
 
-function carregarPaginaSucessoQuizz() {
+function carregarPaginaSucessoQuizz(){ 
+
     let imagemSucesso = document.querySelector(".imgSucesso");
 
     imagemSucesso.innerHTML += `

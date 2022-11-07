@@ -1,0 +1,326 @@
+@media (max-width: 1100px) {
+    .cabecalho {}
+
+    body {}
+
+    .primeiraTela {
+        width: 100%;
+    }
+
+    .nossosQuizzes {
+        margin-left: 18px;
+        margin-right: 18px;
+        width: auto;
+
+    }
+
+    .criarQuiz {
+        width: auto;
+    }
+
+    .criarTexto {}
+
+    span {}
+
+    h1 {
+        margin-left: 18px;
+    }
+
+    .todosQuizzes {
+        margin-left: 18px;
+        width: auto;
+        justify-content: center;
+
+
+
+    }
+
+    .gameQuizzes {
+        margin-right: 18px;
+
+    }
+
+    .gameQuizzes img {}
+
+    .gameQuizzes p {}
+
+    .img-quizz {}
+
+    .degrade {}
+
+
+
+    button {}
+
+    .terceiraTela {
+        width: 100%;
+    }
+
+    .infoQuizz {
+        width: 100%;
+    }
+
+    .infoTexto {
+        font-size: 20px;
+        line-height: 23.44px;
+        width: 100%;
+    }
+
+
+
+    input {}
+
+    input::placeholder {}
+
+    .Tela31 {}
+
+    .Tela32 {}
+
+    .botaoTerceiraTela {
+        width: 324px;
+        font-size: 18px;
+        line-height: 21.09px;
+    }
+
+    .perguntaQuizz {
+       
+    }
+
+    .perguntasInfo {
+       
+    }
+
+    .caixaTeste {
+       
+    }
+
+    .caixaNivel {
+      
+    }
+
+    .todasPerguntas {
+       
+    }
+
+    .niveisQuizz {
+        display: none;
+
+    }
+
+    .sucessoQuizz {
+
+        display: none;
+
+    }
+
+
+
+    .seusQuizzes {
+        display: none;
+    }
+
+    .tituloNossosQuizzes {
+        display: none;
+    }
+
+    .addQuizz {
+        display: none;
+    }
+
+    .quizzesprontos {
+        display: none;
+    }
+
+    .seusQuizzes {
+        display: none;
+    }
+
+
+    .tituloNossosQuizzes {
+        display: none;
+    }
+
+    .addQuizz {
+        display: none;
+
+    }
+
+    .quizzesprontos {
+        display: none;
+    }
+
+
+
+
+
+
+
+
+
+
+   
+
+    .voltarHome {
+        display: none;
+    }
+
+    .botaoSucesso {
+        display: none;
+    }
+
+    .textoImg {
+        display: none;
+    }
+
+    .textoPergunta {
+        display: none;
+    }
+
+    .caixaUm {
+        display: none;
+
+    }
+
+    .caixaDois {
+        display: none;
+
+    }
+
+    .imgSucesso {
+        display: none;
+    }
+
+    
+
+    .desativada {
+        display: none;
+    }
+
+    .segundaTela .partida {
+        display: none;
+
+    }
+
+    .segundaTela .partida p {
+        display: none;
+    }
+
+    .segundaTela .partida .imagemLogo {
+        display: none;
+    }
+
+    .segundaTela .questoesQuizz .questaoPartida {
+        display: none;
+
+    }
+
+    .segundaTela .questoesQuizz .questaoPartida .imagemQuestao {
+        display: none;
+    }
+
+    .segundaTela .questoesQuizz .questaoPartida .imagemQuestao .tituloQuestao {
+        display: none;
+    }
+
+    .segundaTela .questoesQuizz .questaoPartida .respostasQuizz {
+        display: none;
+    }
+
+    .imagemResposta {
+        display: none;
+    }
+
+    .segundaTela .questoesQuizz .questaoPartida .respostasQuizz .respostaPartida .tituloResposta {
+        display: none;
+    }
+
+    .resultadoTela {
+        display: none;
+    }
+
+    .tituloResultado {
+        display: none;
+    }
+
+    .resultadoNivel {
+        display: none;
+    }
+
+    .itensNivel {
+        display: none;
+    }
+
+    .intensNivel div {
+        display: none;
+    }
+
+    .imagemNivel {
+        display: none;
+    }
+
+    .tituloNivel,
+    textoNivel,
+    .reiniciar button {
+        display: none;
+    }
+
+    .retorno {
+        display: none;
+    }
+
+    .retorno button {
+        display: none;
+    }
+
+    .reiniciar {
+        display: none;
+    }
+
+    .voltarHome{
+        font-size: 18px;
+        line-height: 21.09px;
+    }
+
+    .textoImg {
+        font-size: 19px;
+        line-height: 22.27px;
+       
+    }
+}
+
+@media (max-width: 600px) {
+
+    .infoDados {
+    
+    width:100%;
+        
+    }
+
+    .todasPerguntas {
+        width:100%;
+    }
+
+    .testef{
+        display: flex;
+        margin-left: 16px;
+    }
+
+    input {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+.imgFinal {
+    width:100%;
+    height:auto;
+}
+
+.imgFinal23 {
+    width:100%;
+    height:auto;
+}
+
+}
