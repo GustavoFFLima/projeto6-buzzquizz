@@ -115,7 +115,6 @@ flex-wrap: wrap;
     width: 340px;
     height: 181px;
     border-radius: 5px;
-    -webkit-mask-image: linear-gradient(to top transparent 25% #0000 100%);
 }
 
 .todosQuizzes .gameQuizzes p{
@@ -255,10 +254,6 @@ input::placeholder {
     display: none;
 }
 
-.segundaTela{
-
-}
-
 .segundaTela .partida{
     height: 227px;
     width: 1440px;
@@ -273,39 +268,120 @@ input::placeholder {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57));
 }
 
-.segundaTela .partida .tituloLogo{
-
-}
-
-.segundaTela .questoesQuizz{
-
-}
-
 .segundaTela .questoesQuizz .questaoPartida{
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 75px 0px;
+    
 }
 
 .segundaTela .questoesQuizz .questaoPartida .imagemQuestao{
-
+    Width: 688px;
+    Height: 138px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .segundaTela .questoesQuizz .questaoPartida .imagemQuestao .tituloQuestao{
-
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    display: block;
+    align-items: center;
+    text-align: center;
 }
 
 .segundaTela .questoesQuizz .questaoPartida .respostasQuizz{
-
+    display: flex;
+    flex-wrap: wrap;
+    Width: 688px;
 }
 
-.respostaPartida{
-    background-color: #EC362D;
-}
 .imagemResposta{
-    display: none;
-    width: 33px;
-    height: 18px;
+    width: 330px;
+    height: 175px;
+    margin: 10px 5px;
 }
 
 .segundaTela .questoesQuizz .questaoPartida .respostasQuizz .respostaPartida .tituloResposta{
-    
+    display: block;
+    flex-wrap: wrap;
+    width: 300px;
+    margin-top: 8px;
+    margin-bottom: 18px;
+    margin-left: 10px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
 }
+
+.resultadoTela {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tituloResultado {    
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+    width: 727px;
+    height: 99px;
+    background: #EC362D;
+}
+
+.resultadoNivel {
+    display: block;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23px;
+    color: #FFFFFF;
+}
+
+.itensNivel {
+    display: flex;
+    width: 727px;
+}
+
+.intensNivel div {
+    width: 360px;
+}
+
+.imagemNivel {
+    display: block;
+    justify-content: center;
+    width: 364px;
+    height: 273px;
+    margin: 20px;
+}
+.tituloNivel, textoNivel, .reiniciar button {
+    display: block;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 25px;
+}
+
+.retorno {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.retorno button {
+    margin: 10px 0px ;
+    width: 260px;
+}
+
+.reiniciar {
+    background-color: #EC362D;
+    color: #fff;
+}
+
