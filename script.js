@@ -407,12 +407,12 @@ function telaNiveisQuizz() {
     questions = arrayFinal;
 
     //Chamar a pagina para carregar a Tela 3.3
-    carregarPaginaNiveisQuizz();
+    carregarTelaNiveisQuizz();
 }
 
 
 
-function carregarPaginaNiveisQuizz() {
+function carregarTelaNiveisQuizz() {
     const paginaAtual = document.querySelector(".perguntaQuizz");
     const paginaDesejada = document.querySelector(".niveisQuizz");
 
@@ -420,4 +420,107 @@ function carregarPaginaNiveisQuizz() {
     paginaAtual.classList.remove("atual");
     paginaDesejada.classList.add("atual");
     paginaDesejada.classList.remove("desativada");
+
+    carregarPaginaNiveisQuizz();
 }
+
+
+function carregarPaginaNiveisQuizz() {
+    let telaAtual = document.querySelector(".todosNiveis");
+
+    for (let i = 0; i < niveis; i++) {
+        telaAtual.innerHTML += `<div class="caixaNivel">
+        <div class="caixaTeste">
+            <div class="textoPergunta">Nivel ${i + 1}</div>
+            <div><input class="tituloNivel${i + 1} Tela32" type="text" placeholder="Título do nível"></div>
+            <div><input class="acertoNivel${i + 1} Tela32" type="number" placeholder="% de acerto mínima">
+            </div>
+            <div><input class="urlNivel${i + 1} Tela32" type="text" placeholder="URL da imagem do nível">
+            </div>
+            <div><input class="descricaoNivel${i + 1} Tela32" type="text" placeholder="Descrição do nível">
+            </div>
+        </div>
+    </div>`}
+}
+
+let arrayLevels = [];
+function verificacaoNiveisQuizz() {
+    let verificarZero = '';
+
+        for (y = 0;y < niveis; y++){
+            let temZero = Number(document.querySelector(`.acertoNivel${y + 1}`).value);
+            if(temZero == 0){
+                verificarZero += 1;
+            }
+        }
+
+        console.log(verificarZero);
+
+        if(verificarZero ==1){
+
+            for (let i = 0; i < niveis; i++) {
+                let title = document.querySelector(`.tituloNivel${i + 1}`).value;
+                let acerto = Number(document.querySelector(`.acertoNivel${i + 1}`).value);
+                let url = document.querySelector(`.urlNivel${i + 1}`).value;
+                let descricao = document.querySelector(`.descricaoNivel${i + 1}`).value;
+                
+                    if (title.length < 10 || acerto > 100 || acerto < 0 || checkUrl(url) == false || descricao < 30){
+                        return alert("Informação errada! Ajuste para prosseguir.");
+                    }
+            
+                    let arrayNivel = {
+                        title:title,
+                        image:url,
+                        text:descricao,
+                        minValue:acerto
+                    };
+            
+                    arrayLevels.push(arrayNivel);
+            }
+        } else {
+            return alert("Informação errada! Ajuste para prosseguir.")
+        }
+
+        realizarArrayPost();
+}
+
+
+function realizarArrayPost() {
+
+    let arrayPost = {
+        title:titleImage.title,
+        image:titleImage.image,
+        questions:questions,
+        levels:arrayLevels
+    };
+
+    console.log(arrayPost);
+
+
+    mandarArrayPost();
+}
+
+function mandarArrayPost(){
+
+    let promisePost = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
+    
+
+    promisePost.then(carregarTelaSucessoQuizz);
+}
+
+function carregarTelaSucessoQuizz() {
+    const paginaAtual = document.querySelector(".niveisQuizz");
+    const paginaDesejada = document.querySelector(".sucessoQuizz");
+
+    paginaAtual.classList.add("desativada");
+    paginaAtual.classList.remove("atual");
+    paginaDesejada.classList.add("atual");
+    paginaDesejada.classList.remove("desativada");
+
+    carregarPaginaSucessoQuizz();
+}
+
+function carregarPaginaSucessoQuizz(){
+
+}
+

@@ -14,7 +14,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 
+}
+
+.linha{
+    width:600px;
+    background-color: aqua;
+    height: 100px;
 }
 
 body {
@@ -94,46 +101,51 @@ button {
 
 }
 
+/* andre usando
+*/
 
 h1 {
     margin-top: 77px;
     font-size: 20px;
     font-weight: 700;
     line-height: 23.44px;
-    margin-left: 20px;
+    font-family: "Roboto", sans-serif;
 }
 
 .todosQuizzes {
-display: flex;
-flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+    width: 1051px;
+    justify-content: space-between;
 
 }
 
 .todosQuizzes .gameQuizzes img {
-   
+
     margin-top: 12px;
     width: 340px;
     height: 181px;
     border-radius: 5px;
 }
 
-.todosQuizzes .gameQuizzes p{
+.todosQuizzes .gameQuizzes p {
     display: block;
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 301px;
+    width: 340px;
     height: 54px;
     color: #ffffff;
     font-size: 19px;
     font-weight: 400;
     line-height: 22.27px;
     text-align: center;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0));
+    border-radius: 5px;
 }
 
 .todosQuizzes .gameQuizzes {
-position: relative;
-margin-left: 15px;
+    position: relative;
 
 }
 
@@ -187,11 +199,11 @@ input::placeholder {
 
 }
 
-.Tela31{
+.Tela31 {
     margin-bottom: 9px;
 }
 
-.Tela32{
+.Tela32 {
     margin-bottom: 14px;
 }
 
@@ -223,8 +235,29 @@ input::placeholder {
     margin-bottom: 24px;
 }
 
+.caixaTeste{
+    padding-left: 16px;
+    padding-right: 20px;
+}
+
+.caixaNivel {
+    width: 100%;
+    height: 316px;
+    background-color: white;
+    padding-top: 27px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
 .todasPerguntas {
     margin-bottom: 81px;
+}
+
+.niveisQuizz {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 .textoPergunta {
@@ -240,14 +273,14 @@ input::placeholder {
     margin-bottom: 32px;
     padding-left: 16px;
     padding-right: 20px;
-    
+
 }
 
 .caixaDois {
     margin-bottom: 14px;
     padding-left: 16px;
     padding-right: 20px;
-    
+
 }
 
 .desativada {

@@ -42,7 +42,8 @@
             <div class="infoDados">
                 <div><input class="infoTitulo Tela31" type="text" placeholder="Título do seu quizz"></div>
                 <div><input class="infoUrl Tela31" type="url" placeholder="URL da imagem do seu quizz"></div>
-                <div><input class="infoPerguntas Tela31" type="number" placeholder="Quantidade de perguntas do quizz"></div>
+                <div><input class="infoPerguntas Tela31" type="number" placeholder="Quantidade de perguntas do quizz">
+                </div>
                 <div><input class="infoNiveis Tela31" type="number" placeholder="Quantidade de níveis do quizz"></div>
             </div>
             <div class="proxEtapa"><button class="botaoTerceiraTela" onclick="telaPerguntaQuizz()">Prosseguir pra criar
@@ -52,17 +53,22 @@
             <div class="infoTexto">Crie suas perguntas</div>
             <div class="todasPerguntas">
             </div>
-            <div class="proxEtapa"><button class="botaoTerceiraTela" onclick="verificacaoPerguntasQuizz()">Prosseguir pra criar
+            <div class="proxEtapa"><button class="botaoTerceiraTela" onclick="verificacaoPerguntasQuizz()">Prosseguir
+                    pra criar
                     niveis</button></div>
         </div>
-    </div>
-    <div class="niveisQuizz desativada"></div>
-    <div class="sucessoQuizz desativada">
-        <div class="infoTexto">Seu quizz está pronto!</div>
-        <div class="img"></div>
-        <div class="proxEtapa"><button class="botaoTerceiraTela" onclick="segundaTela()">Acessar Quizz</button></div>
-        <div onclick = "voltarTelaInicial()">Voltar para home</div>
-    </div>
+        <div class="niveisQuizz desativada">
+            <div class="infoTexto">Agora, decida os níveis</div>
+            <div class="todosNiveis"></div>
+            <div class="proxEtapa"><button class="botaoTerceiraTela" onclick="verificacaoNiveisQuizz()">Finalizar Quizz</button></div>
+        </div>
+        <div class="sucessoQuizz desativada">
+            <div class="infoTexto">Seu quizz está pronto!</div>
+            <div class="img"></div>
+            <div class="proxEtapa"><button class="botaoTerceiraTela" onclick="segundaTela()">Acessar Quizz</button>
+            </div>
+            <div onclick="voltarTelaInicial()">Voltar para home</div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"> </script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
