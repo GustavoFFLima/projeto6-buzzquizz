@@ -181,6 +181,8 @@ function resultados(){
     elementoQueQueroQueApareca.scrollIntoView();
 };
 
+
+
 function reiniciar() { 
     contadorRespostaFeitas = 0;
     contadorAcerto = 0;
@@ -553,24 +555,9 @@ function deuErro(){
 }
 
 function carregarTelaSucessoQuizz(resposta) {
-<<<<<<< HEAD
-
-    meusQuizzes = [];
-
-    console.log(resposta.data);
-
-    let idTeste = resposta.data.id;
-
-    meusQuizzes.push(idTeste);
-
-    const meusQuizzesSerializado = JSON.stringify(meusQuizzes); 
-
-    localStorage.setItem("id", meusQuizzesSerializado);
-=======
     meusQuizzes.push(`${resposta.data.id}`);
     const meusQuizzesSerializado = JSON.stringify(meusQuizzes); 
     localStorage.setItem("lista", meusQuizzesSerializado);
->>>>>>> c0b4bfb01b72ce1cf85b083bc1790756d47fdd42
 
     const paginaAtual = document.querySelector(".niveisQuizz");
     const paginaDesejada = document.querySelector(".sucessoQuizz");
