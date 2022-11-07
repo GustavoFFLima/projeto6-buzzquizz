@@ -255,11 +255,28 @@ input::placeholder {
 }
 
 .segundaTela .partida{
+    position: relative;
     height: 227px;
     width: 1440px;
     left: 0px;
     top: 69px;
 
+}
+
+.segundaTela .partida p {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 39px;
+    line-height: 46px;
+    align-items: center;
+    text-align: center;
+    color: #fff;
 }
 
 .segundaTela .partida .imagemLogo{
