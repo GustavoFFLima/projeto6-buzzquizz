@@ -524,3 +524,8 @@ input::placeholder {
     color: #fff;
 }
 
+/* @media (max-width: 614px) {
+    header {
+        justify-content: center;
+    }
+}; */
