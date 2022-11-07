@@ -2,16 +2,17 @@
 let todosQuizzes = [];
 let quizzSelecionado = [];
 let niveldojogador = [];
+let sorteioQuestao = [];
+let arrayPost = {};
+let meusQuizzes = localStorage.getItem("id");
 
-
-
+console.log(meusQuizzes);
 pegarQuizzes();
 
 
 function pegarQuizzes() {
 
     let promiseQuizzes = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
-    // console.log("enviou")
 
     promiseQuizzes.then(respostaQuizzes);
 
@@ -59,13 +60,18 @@ let contadorRespostaFeitas = 0;
 let contadorAcerto = 0;
 let contadorQuestoes = 0;
 
+function comparador() { 
+	return Math.random() - 0.5; 
+}
+
 function renderizarSegundaTela(resposta){
     contadorQuestoes = resposta.data.questions.length;
     quizzSelecionado = resposta.data;
     niveldojogador = quizzSelecionado.levels;
-    console.log(resposta.data)
 
     let rend = document.querySelector(".segundaTela");
+    sorteioQuestao = resposta.data.questions.sort(comparador);
+
     rend.innerHTML =
         `<div class="partida">   
         <img class="imagemLogo" src="${resposta.data.image}"/>  
@@ -113,11 +119,10 @@ function resultados(){
     paginaDesejada.classList.remove("desativada");
 
     let resultado =  (contadorAcerto / contadorQuestoes) * 100;
-    console.log(todosQuizzes);
     paginaDesejada.innerHTML += 
     `<div>
         <div class="tituloResultado">
-            <p class="resultadoNivel">Você acertou ${resultado}%, quer tentar mais uma vez?</p>
+            <p class="resultadoNivel">Você acertou ${parseInt(resultado)}%, quer tentar mais uma vez?</p>
         </div>
         <div class"itensNivel">
             <div>
@@ -130,7 +135,7 @@ function resultados(){
         </div> 
         <div class="retorno">
             <button class="reiniciar" onclick="reiniciar()">Reiniciar Quizz</button>
-            <button class="home">Voltar pra home</button>
+            <button class="home" onclick="home()">Voltar pra home</button>
         </div> 
     </div>`
 
@@ -147,9 +152,13 @@ function reiniciar() {
     apagar.innerHTML =``;
     renderizar();
     segundaTela(quizzSelecionado.id);
-
-
 };
+
+function home() {
+    window.location.reload();
+    const elementoQueQueroQueApareca = document.querySelector('.cabecalho');
+    elementoQueQueroQueApareca.scrollIntoView();
+}
 
 function terceiraTela() {
     const paginaAtual = document.querySelector(".atual");
@@ -395,13 +404,11 @@ function telaNiveisQuizz() {
         let testeFinal = {
             title: titulosCores[y].title,
             color: titulosCores[y].color,
-            answer: answers[y]
+            answers: answers[y]
         };
 
         arrayFinal.push(testeFinal);
     }
-
-    console.log(arrayFinal);
 
     // Jogar a Array para fora da funcao para poder usar no Array para mandar para o axios
     questions = arrayFinal;
@@ -454,8 +461,6 @@ function verificacaoNiveisQuizz() {
             }
         }
 
-        console.log(verificarZero);
-
         if(verificarZero ==1){
 
             for (let i = 0; i < niveis; i++) {
@@ -487,7 +492,7 @@ function verificacaoNiveisQuizz() {
 
 function realizarArrayPost() {
 
-    let arrayPost = {
+    arrayPost = {
         title:titleImage.title,
         image:titleImage.image,
         questions:questions,
@@ -496,14 +501,15 @@ function realizarArrayPost() {
 
     console.log(arrayPost);
 
-
-    let promisePost = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',arrayPost);
+    let promisePost = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", arrayPost);
     
-
     promisePost.then(carregarTelaSucessoQuizz);
 }
 
-function carregarTelaSucessoQuizz() {
+function carregarTelaSucessoQuizz(resposta) {
+
+    localStorage.setItem("id", resposta.data.id);
+
     const paginaAtual = document.querySelector(".niveisQuizz");
     const paginaDesejada = document.querySelector(".sucessoQuizz");
 

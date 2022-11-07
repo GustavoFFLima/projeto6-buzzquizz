@@ -285,11 +285,10 @@ input::placeholder {
     display: none;
 }
 
-.segundaTela {}
-
-;
-
 .segundaTela .partida{
+    display: flex;
+    justify-content: center;
+    position: relative;
     height: 227px;
     width: 1440px;
     left: 0px;
@@ -297,12 +296,23 @@ input::placeholder {
 
 }
 
-;
+.segundaTela .partida p {
+    position: absolute;
+    top: 0;
+    margin-top: 90px;
 
-.segundaTela .partida .imagemLogo {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 39px;
+    line-height: 46px;
+    color: #fff;
+}
+
+.segundaTela .partida .imagemLogo{
     height: 227px;
     width: 1440px;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57));
+    filter: brightness(60%);
 }
 
 .segundaTela .questoesQuizz .questaoPartida{
