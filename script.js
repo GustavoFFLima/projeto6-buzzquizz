@@ -11,7 +11,6 @@ pegarQuizzes();
 function pegarQuizzes() {
 
     let promiseQuizzes = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
-    // console.log("enviou")
 
     promiseQuizzes.then(respostaQuizzes);
 
@@ -21,7 +20,6 @@ function pegarQuizzes() {
 function respostaQuizzes(resposta) {
 
     todosQuizzes = resposta.data;
-    console.log(resposta.data);
 
 
     renderizar();
@@ -63,7 +61,6 @@ function renderizarSegundaTela(resposta){
     contadorQuestoes = resposta.data.questions.length;
     quizzSelecionado = resposta.data;
     niveldojogador = quizzSelecionado.levels;
-    console.log(resposta.data)
 
     let rend = document.querySelector(".segundaTela");
     rend.innerHTML =
@@ -113,11 +110,10 @@ function resultados(){
     paginaDesejada.classList.remove("desativada");
 
     let resultado =  (contadorAcerto / contadorQuestoes) * 100;
-    console.log(todosQuizzes);
     paginaDesejada.innerHTML += 
     `<div>
         <div class="tituloResultado">
-            <p class="resultadoNivel">Você acertou ${resultado}%, quer tentar mais uma vez?</p>
+            <p class="resultadoNivel">Você acertou ${parseInt(resultado)}%, quer tentar mais uma vez?</p>
         </div>
         <div class"itensNivel">
             <div>
@@ -130,7 +126,7 @@ function resultados(){
         </div> 
         <div class="retorno">
             <button class="reiniciar" onclick="reiniciar()">Reiniciar Quizz</button>
-            <button class="home">Voltar pra home</button>
+            <button class="home" onclick="home()">Voltar pra home</button>
         </div> 
     </div>`
 
@@ -147,9 +143,13 @@ function reiniciar() {
     apagar.innerHTML =``;
     renderizar();
     segundaTela(quizzSelecionado.id);
-
-
 };
+
+function home() {
+    window.location.reload();
+    const elementoQueQueroQueApareca = document.querySelector('.cabecalho');
+    elementoQueQueroQueApareca.scrollIntoView();
+}
 
 function terceiraTela() {
     const paginaAtual = document.querySelector(".atual");
@@ -401,8 +401,6 @@ function telaNiveisQuizz() {
         arrayFinal.push(testeFinal);
     }
 
-    console.log(arrayFinal);
-
     // Jogar a Array para fora da funcao para poder usar no Array para mandar para o axios
     questions = arrayFinal;
 
@@ -454,8 +452,6 @@ function verificacaoNiveisQuizz() {
             }
         }
 
-        console.log(verificarZero);
-
         if(verificarZero ==1){
 
             for (let i = 0; i < niveis; i++) {
@@ -494,9 +490,6 @@ function realizarArrayPost() {
         levels:arrayLevels
     };
 
-    console.log(arrayPost);
-
-
     mandarArrayPost();
 }
 
@@ -508,7 +501,8 @@ function mandarArrayPost(){
     promisePost.then(carregarTelaSucessoQuizz);
 }
 
-function carregarTelaSucessoQuizz() {
+function carregarTelaSucessoQuizz(resposta) {
+    localStorage.setItem("id", resposta.data.id);
     const paginaAtual = document.querySelector(".niveisQuizz");
     const paginaDesejada = document.querySelector(".sucessoQuizz");
 
