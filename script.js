@@ -4,9 +4,8 @@ let quizzSelecionado = [];
 let niveldojogador = [];
 let sorteioQuestao = [];
 let arrayPost = {};
-let meusQuizzes = [];
-let listaSerializada = localStorage.getItem("id");
-meusQuizzes.push(listaSerializada);
+let listaSerializada = localStorage.getItem("lista");
+let meusQuizzes = JSON.parse(listaSerializada);
 
 console.log(meusQuizzes);
 pegarQuizzes();
@@ -35,17 +34,12 @@ function respostaQuizzes(resposta) {
 function renderizar() {
 
     let rend = document.querySelector(".todosQuizzes");
-    let cabecalhoQuizz = document.querySelector(".quizzesprontos");
 
     for (let i = 0; i < todosQuizzes.length; i++) {
         let objeto = todosQuizzes[i];
 
-        for ( let y = 0; y<meusQuizzes.length;y++){
-            if(objeto.id  == meusQuizzes[y]){
-                cabecalhoQuizz.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/><div class="degrade"></div>  <p> ${objeto.title} </p></div>`;
-        } else {
-            rend.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/><div class="degrade"></div>  <p> ${objeto.title} </p></div>`;
-        }
+        rend.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/><div class="degrade"></div>  <p> ${objeto.title} </p> </div> </div>`;
+
     };
 };
 
@@ -68,11 +62,11 @@ let contadorRespostaFeitas = 0;
 let contadorAcerto = 0;
 let contadorQuestoes = 0;
 
-function comparador() {
-    return Math.random() - 0.5;
+function comparador() { 
+	return Math.random() - 0.5; 
 }
 
-function renderizarSegundaTela(resposta) {
+function renderizarSegundaTela(resposta){
     contadorQuestoes = resposta.data.questions.length;
     quizzSelecionado = resposta.data;
     niveldojogador = quizzSelecionado.levels;
@@ -96,39 +90,39 @@ function renderizarSegundaTela(resposta) {
             </div>  
             <div class="respostasQuizz"></div>
         </div>`;
-        for (let g = 0; g < resposta.data.questions[i].answers.length; g++) {
+        for(let g = 0; g < resposta.data.questions[i].answers.length; g++) {
             let rend3 = document.querySelector(".questoesQuizz");
-            rend3.children[i].children[1].innerHTML +=
-                `<div class="respostaPartida" data-charactes="${resposta.data.questions[i].answers[g].isCorrectAnswer}" onclick="respostaCorreta(this)" disabled="false">
+            rend3.children[i].children[1].innerHTML += 
+            `<div class="respostaPartida" data-charactes="${resposta.data.questions[i].answers[g].isCorrectAnswer}" onclick="respostaCorreta(this)" disabled="false">
                 <img class="imagemResposta" src="${resposta.data.questions[i].answers[g].image}"/>
                 <p class="tituloResposta">${resposta.data.questions[i].answers[g].text}</p>
             </div>`;
         };
     };
-    rend.innerHTML += `<div class="resultadoTela desativada"></div>`
+    rend.innerHTML+= `<div class="resultadoTela desativada"></div>`
 
 };
 
 function respostaCorreta(selecionada) {
-    if (selecionada.getAttribute('data-charactes') == "true") {
+    if(selecionada.getAttribute('data-charactes') == "true") {
         contadorAcerto++;
     }
     contadorRespostaFeitas++;
     //Andre coloca o chamado da sua fenção;
-    if (contadorRespostaFeitas == contadorQuestoes) {
+    if(contadorRespostaFeitas == contadorQuestoes) {
         setTimeout(resultados, 2000);
     }
 };
 
-function resultados() {
+function resultados(){
     const paginaDesejada = document.querySelector(".resultadoTela");
 
     paginaDesejada.classList.add("atual");
     paginaDesejada.classList.remove("desativada");
 
-    let resultado = (contadorAcerto / contadorQuestoes) * 100;
-    paginaDesejada.innerHTML +=
-        `<div>
+    let resultado =  (contadorAcerto / contadorQuestoes) * 100;
+    paginaDesejada.innerHTML += 
+    `<div>
         <div class="tituloResultado">
             <p class="resultadoNivel">Você acertou ${parseInt(resultado)}%, quer tentar mais uma vez?</p>
         </div>
@@ -151,13 +145,13 @@ function resultados() {
     elementoQueQueroQueApareca.scrollIntoView();
 };
 
-function reiniciar() {
+function reiniciar() { 
     contadorRespostaFeitas = 0;
     contadorAcerto = 0;
     contadorQuestoes = 0;
 
     let apagar = document.querySelector(".todosQuizzes");
-    apagar.innerHTML = ``;
+    apagar.innerHTML =``;
     renderizar();
     segundaTela(quizzSelecionado.id);
 };
@@ -253,28 +247,28 @@ function carregarPaginaPerguntaQuizz() {
         telaAtual.innerHTML += `<div class="perguntasInfo">
         <div class="caixaUm">
             <div class="textoPergunta">Pergunta ${i + 1}</div>
-            <div class="testef"><input class="perguntaTela3${i + 1} Tela32" type="text" placeholder="Texto da pergunta"></div>
-            <div class="testef"><input class="corTela3${i + 1} Tela32" type="text" placeholder="Cor de fundo da pergunta"></div>
+            <div><input class="perguntaTela3${i + 1} Tela32" type="text" placeholder="Texto da pergunta"></div>
+            <div><input class="corTela3${i + 1} Tela32" type="text" placeholder="Cor de fundo da pergunta"></div>
         </div>
         <div class="caixaUm">
             <div class="textoPergunta">Resposta correta</div>
-            <div class="testef"><input class="respostaTela31${i + 1} Tela32" type="text" placeholder="Resposta correta"></div>
-            <div class="testef"><input class="imagemTela31${i + 1} Tela32" type="url" placeholder="URL da imagem"></div>
+            <div><input class="respostaTela31${i + 1} Tela32" type="text" placeholder="Resposta correta"></div>
+            <div><input class="imagemTela31${i + 1} Tela32" type="url" placeholder="URL da imagem"></div>
         </div>
 
         
         <div class="caixaDois">
             <div class="textoPergunta">Respostas incorretas</div>
-            <div class="testef"><input class="respostaTela32${i + 1} Tela32" type="text" placeholder="Resposta incorreta 1"></div>
-            <div class="testef"><input class="imagemTela32${i + 1} Tela32" type="url" placeholder="URL da imagem 1"></div>
+            <div><input class="respostaTela32${i + 1} Tela32" type="text" placeholder="Resposta incorreta 1"></div>
+            <div><input class="imagemTela32${i + 1} Tela32" type="url" placeholder="URL da imagem 1"></div>
         </div>
         <div class="caixaDois">
-            <div class="testef"><input class="respostaTela33${i + 1} Tela32" type="text" placeholder="Resposta incorreta 2"></div>
-            <div class="testef"><input class="imagemTela33${i + 1} Tela32" type="url" placeholder="URL da imagem 2"></div>
+            <div><input class="respostaTela33${i + 1} Tela32" type="text" placeholder="Resposta incorreta 2"></div>
+            <div><input class="imagemTela33${i + 1} Tela32" type="url" placeholder="URL da imagem 2"></div>
         </div>
         <div class="caixaDois">
-            <div class="testef"><input class="respostaTela34${i + 1} Tela32" type="text" placeholder="Resposta incorreta 3"></div>
-            <div class="testef"><input class="imagemTela34${i + 1} Tela32" type="url" placeholder="URL da imagem 3"></div>
+            <div><input class="respostaTela34${i + 1} Tela32" type="text" placeholder="Resposta incorreta 3"></div>
+            <div><input class="imagemTela34${i + 1} Tela32" type="url" placeholder="URL da imagem 3"></div>
         </div>
     </div>`
     }
@@ -297,7 +291,7 @@ function verificacaoPerguntasQuizz() {
         let image4 = document.querySelector(`.imagemTela34${i + 1}`).value;
         let letras = ['g', "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-
+       
         //verificacao do titulo, da cor e do texto e imagem das perguntas
         if (title.length < 20) {
             return alert("Informação errada! Ajuste para prosseguir.");
@@ -310,7 +304,7 @@ function verificacaoPerguntasQuizz() {
                 }
             }
 
-            if ((text1 !== '' && checkUrl(image1) == true && image1 != '') && ((text2 !== '' && checkUrl(image2) == true && image2 != '') || (text3 !== '' && checkUrl(image3) == true && image3 != '') || (text4 !== '' && checkUrl(image4) == true && image4 != ''))) {
+            if ((text1 !== '' && checkUrl(image1) == true && image1!='') && ((text2 !== '' && checkUrl(image2) == true && image2!='') || (text3 !== '' && checkUrl(image3) == true && image3!='') || (text4 !== '' && checkUrl(image4) == true && image4!=''))) {
 
             } else {
                 return alert("Informação errada! Ajuste para prosseguir.");
@@ -379,12 +373,8 @@ function telaNiveisQuizz() {
             image: image2,
             isCorrectAnswer: falso
         };
-        if(text2 =='' || image2 == ''){
-            
-        }else {
-            textoRespostas.push(arrayTemporario);
-        }
-        
+
+        textoRespostas.push(arrayTemporario);
 
         arrayTemporario = {
             text: text3,
@@ -392,11 +382,7 @@ function telaNiveisQuizz() {
             isCorrectAnswer: falso
         };
 
-        if(text3 =='' || image3 == ''){
-            
-        }else {
-            textoRespostas.push(arrayTemporario);
-        }
+        textoRespostas.push(arrayTemporario);
 
         arrayTemporario = {
             text: text4,
@@ -404,16 +390,10 @@ function telaNiveisQuizz() {
             isCorrectAnswer: falso
         };
 
-        if(text4 =='' || image4 == ''){
-            
-        }else {
-            textoRespostas.push(arrayTemporario);
-        }
+        textoRespostas.push(arrayTemporario);
 
         // Depois do textoRespostar obter as informacoes das 4 opcoes, joga para o Array answers
         answers.push(textoRespostas);
-
-        console.log(answers);
 
         // Zerar o array para ele rodar o proximo for sem elementos nele
         textoRespostas = [];
@@ -461,12 +441,12 @@ function carregarPaginaNiveisQuizz() {
         telaAtual.innerHTML += `<div class="caixaNivel">
         <div class="caixaTeste">
             <div class="textoPergunta">Nivel ${i + 1}</div>
-            <div class="testef"><input class="tituloNivel${i + 1} Tela32" type="text" placeholder="Título do nível"></div>
-            <div class="testef"><input class="acertoNivel${i + 1} Tela32" type="number" placeholder="% de acerto mínima">
+            <div><input class="tituloNivel${i + 1} Tela32" type="text" placeholder="Título do nível"></div>
+            <div><input class="acertoNivel${i + 1} Tela32" type="number" placeholder="% de acerto mínima">
             </div>
-            <div class="testef"><input class="urlNivel${i + 1} Tela32" type="text" placeholder="URL da imagem do nível">
-            </div class="testef">
-            <div class="testef"><input class="descricaoNivel${i + 1} Tela32" type="text" placeholder="Descrição do nível">
+            <div><input class="urlNivel${i + 1} Tela32" type="text" placeholder="URL da imagem do nível">
+            </div>
+            <div><input class="descricaoNivel${i + 1} Tela32" type="text" placeholder="Descrição do nível">
             </div>
         </div>
     </div>`}
@@ -477,71 +457,69 @@ function verificacaoNiveisQuizz() {
     let verificarZero = '';
     let arrayInicial = [];
 
-    for (y = 0; y < niveis; y++) {
-        let temZero = Number(document.querySelector(`.acertoNivel${y + 1}`).value);
-        if (temZero == 0) {
-            verificarZero += 1;
+        for (y = 0;y < niveis; y++){
+            let temZero = Number(document.querySelector(`.acertoNivel${y + 1}`).value);
+            if(temZero == 0){
+                verificarZero += 1;
+            }
         }
-    }
 
-    if (verificarZero == 1) {
+        if(verificarZero ==1){
 
-        for (let i = 0; i < niveis; i++) {
-            let title = document.querySelector(`.tituloNivel${i + 1}`).value;
-            let acerto = Number(document.querySelector(`.acertoNivel${i + 1}`).value);
-            let url = document.querySelector(`.urlNivel${i + 1}`).value;
-            let descricao = document.querySelector(`.descricaoNivel${i + 1}`).value;
-
-            if (title.length < 10 || acerto > 100 || acerto < 0 || checkUrl(url) == false || descricao < 30) {
-                return alert("Informação errada! Ajuste para prosseguir.");
+            for (let i = 0; i < niveis; i++) {
+                let title = document.querySelector(`.tituloNivel${i + 1}`).value;
+                let acerto = Number(document.querySelector(`.acertoNivel${i + 1}`).value);
+                let url = document.querySelector(`.urlNivel${i + 1}`).value;
+                let descricao = document.querySelector(`.descricaoNivel${i + 1}`).value;
+                
+                    if (title.length < 10 || acerto > 100 || acerto < 0 || checkUrl(url) == false || descricao < 30){
+                        return alert("Informação errada! Ajuste para prosseguir.");
+                    }
+            
+                    let arrayNivel = {
+                        title:title,
+                        image:url,
+                        text:descricao,
+                        minValue:acerto
+                    };
+            
+                    arrayInicial.push(arrayNivel);
             }
 
-            let arrayNivel = {
-                title: title,
-                image: url,
-                text: descricao,
-                minValue: acerto
-            };
-
-            arrayInicial.push(arrayNivel);
+            arrayLevels = arrayInicial;
+        } else {
+            return alert("Informação errada! Ajuste para prosseguir.")
         }
 
-        arrayLevels = arrayInicial;
-    } else {
-        return alert("Informação errada! Ajuste para prosseguir.")
-    }
-
-    realizarArrayPost();
+        realizarArrayPost();
 }
 
 
 function realizarArrayPost() {
 
     arrayPost = {
-        title: titleImage.title,
-        image: titleImage.image,
-        questions: questions,
-        levels: arrayLevels
+        title:titleImage.title,
+        image:titleImage.image,
+        questions:questions,
+        levels:arrayLevels
     };
 
     console.log(arrayPost);
 
     let promisePost = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", arrayPost);
-
+    
     promisePost.then(carregarTelaSucessoQuizz);
     promisePost.catch(deuErro);
 }
 
-function deuErro() {
+function deuErro(){
     console.log("deu erro");
 }
 
 function carregarTelaSucessoQuizz(resposta) {
-    console.log(resposta.data);
-    let idTeste = resposta.data.id;
-    meusQuizzes.push(idTeste);
+    meusQuizzes.push(`${resposta.data.id}`);
     const meusQuizzesSerializado = JSON.stringify(meusQuizzes); 
-    localStorage.setItem("id", meusQuizzesSerializado);
+    localStorage.setItem("lista", meusQuizzesSerializado);
 
     const paginaAtual = document.querySelector(".niveisQuizz");
     const paginaDesejada = document.querySelector(".sucessoQuizz");
@@ -555,6 +533,8 @@ function carregarTelaSucessoQuizz(resposta) {
 }
 
 function carregarPaginaSucessoQuizz(){ 
+    
+    meusQuizzes = JSON.parse(listaSerializada);
 
     let imagemSucesso = document.querySelector(".imgSucesso");
 
