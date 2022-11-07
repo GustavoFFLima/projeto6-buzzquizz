@@ -6,7 +6,14 @@ let sorteioQuestao = [];
 let arrayPost = {};
 let meusQuizzes = [];
 let listaSerializada = localStorage.getItem("id");
-meusQuizzes.push(listaSerializada);
+let lista = JSON.parse(listaSerializada);
+if (lista.length == 0){
+
+}else {
+    for (let j = 0; j < lista.length; j++){
+        meusQuizzes[j] = lista[j];
+    }
+}
 
 console.log(meusQuizzes);
 pegarQuizzes();
@@ -36,23 +43,42 @@ function renderizar() {
 
     let rend = document.querySelector(".todosQuizzes");
     let cabecalhoQuizz = document.querySelector(".quizzesprontos");
+    let contadorGeral = 0;
 
     for (let i = 0; i < todosQuizzes.length; i++) {
         let objeto = todosQuizzes[i];
-
+        let contador = 0;
         
 
-        if(objeto.id == meusQuizzes){
-            cabecalhoQuizz.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/><div class="degrade"></div>  <p> ${objeto.title} </p></div>`;
-        }else{
-            rend.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/><div class="degrade"></div>  <p> ${objeto.title} </p></div>`;
+        for (y=0; y<meusQuizzes.length;y++){
+            
+            if (meusQuizzes[y]==objeto.id){
+                cabecalhoQuizz.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/><div class="degrade"></div>  <p> ${objeto.title} </p></div>`;
+                contador +=1;
+                contadorGeral += 1;
+            } 
+               
         }
-
-       
-
+        if (contador == 0){
+            rend.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/><div class="degrade"></div>  <p> ${objeto.title} </p></div>`;
+        } else {
+            contador = 0;
+        }
     };
+    if (contadorGeral > 0) {
+        mudarLayout();
+    }
 };
 
+function mudarLayout(){
+    const paginaAtual = document.querySelector(".criarQuiz");
+    const paginaDesejada = document.querySelector(".seusQuizzes");
+
+    paginaAtual.classList.add("desativada");
+    paginaAtual.classList.remove("atual");
+    paginaDesejada.classList.add("atual");
+    paginaDesejada.classList.remove("desativada");
+}
 
 function segundaTela(id) {
     const paginaAtual = document.querySelector(".atual");
@@ -541,10 +567,17 @@ function deuErro() {
 }
 
 function carregarTelaSucessoQuizz(resposta) {
+
+    meusQuizzes = [];
+
     console.log(resposta.data);
+
     let idTeste = resposta.data.id;
+
     meusQuizzes.push(idTeste);
+
     const meusQuizzesSerializado = JSON.stringify(meusQuizzes); 
+
     localStorage.setItem("id", meusQuizzesSerializado);
 
     const paginaAtual = document.querySelector(".niveisQuizz");
@@ -556,6 +589,8 @@ function carregarTelaSucessoQuizz(resposta) {
     paginaDesejada.classList.remove("desativada");
 
     carregarPaginaSucessoQuizz();
+
+    meusQuizzes = [];
 }
 
 function carregarPaginaSucessoQuizz(){ 
