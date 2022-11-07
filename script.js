@@ -4,7 +4,8 @@ let quizzSelecionado = [];
 let niveldojogador = [];
 let sorteioQuestao = [];
 let arrayPost = {};
-let meusQuizzes = localStorage.getItem("id");
+let listaSerializada = localStorage.getItem("lista");
+let meusQuizzes = JSON.parse(listaSerializada);
 
 console.log(meusQuizzes);
 pegarQuizzes();
@@ -516,8 +517,9 @@ function deuErro(){
 }
 
 function carregarTelaSucessoQuizz(resposta) {
-
-    localStorage.setItem("id", resposta.data.id);
+    meusQuizzes = [id];  
+    const meusQuizzesSerializado = JSON.stringify(meusQuizzes); 
+    localStorage.setItem("lista", meusQuizzesSerializado);
 
     const paginaAtual = document.querySelector(".niveisQuizz");
     const paginaDesejada = document.querySelector(".sucessoQuizz");
@@ -530,7 +532,10 @@ function carregarTelaSucessoQuizz(resposta) {
     carregarPaginaSucessoQuizz();
 }
 
-function carregarPaginaSucessoQuizz(){
+function carregarPaginaSucessoQuizz(){ 
+    
+    meusQuizzes = JSON.parse(listaSerializada);
+
     let imagemSucesso = document.querySelector(".imgSucesso");
 
     imagemSucesso.innerHTML += `
