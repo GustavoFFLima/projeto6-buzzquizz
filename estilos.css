@@ -288,6 +288,8 @@ input::placeholder {
 }
 
 .segundaTela .partida{
+    display: flex;
+    justify-content: center;
     position: relative;
     height: 227px;
     width: 1440px;
@@ -297,25 +299,22 @@ input::placeholder {
 }
 
 .segundaTela .partida p {
-    display: flex;
     position: absolute;
-    bottom: 0;
-    left: 0;
+    top: 0;
+    margin-top: 90px;
 
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
     font-size: 39px;
     line-height: 46px;
-    align-items: center;
-    text-align: center;
     color: #fff;
 }
 
 .segundaTela .partida .imagemLogo{
     height: 227px;
     width: 1440px;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57));
+    filter: brightness(60%);
 }
 
 .segundaTela .questoesQuizz .questaoPartida{

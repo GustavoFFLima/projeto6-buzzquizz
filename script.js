@@ -2,9 +2,11 @@
 let todosQuizzes = [];
 let quizzSelecionado = [];
 let niveldojogador = [];
+let sorteioQuestao = [];
+let arrayPost = {};
+let meusQuizzes = localStorage.getItem("id");
 
-
-
+console.log(meusQuizzes);
 pegarQuizzes();
 
 
@@ -20,6 +22,7 @@ function pegarQuizzes() {
 function respostaQuizzes(resposta) {
 
     todosQuizzes = resposta.data;
+    console.log(resposta.data);
 
 
     renderizar();
@@ -57,12 +60,18 @@ let contadorRespostaFeitas = 0;
 let contadorAcerto = 0;
 let contadorQuestoes = 0;
 
+function comparador() { 
+	return Math.random() - 0.5; 
+}
+
 function renderizarSegundaTela(resposta){
     contadorQuestoes = resposta.data.questions.length;
     quizzSelecionado = resposta.data;
     niveldojogador = quizzSelecionado.levels;
 
     let rend = document.querySelector(".segundaTela");
+    sorteioQuestao = resposta.data.questions.sort(comparador);
+
     rend.innerHTML =
         `<div class="partida">   
         <img class="imagemLogo" src="${resposta.data.image}"/>  
@@ -395,7 +404,7 @@ function telaNiveisQuizz() {
         let testeFinal = {
             title: titulosCores[y].title,
             color: titulosCores[y].color,
-            answer: answers[y]
+            answers: answers[y]
         };
 
         arrayFinal.push(testeFinal);
@@ -483,26 +492,24 @@ function verificacaoNiveisQuizz() {
 
 function realizarArrayPost() {
 
-    let arrayPost = {
+    arrayPost = {
         title:titleImage.title,
         image:titleImage.image,
         questions:questions,
         levels:arrayLevels
     };
 
-    mandarArrayPost();
-}
+    console.log(arrayPost);
 
-function mandarArrayPost(){
-
-    let promisePost = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
+    let promisePost = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", arrayPost);
     
-
     promisePost.then(carregarTelaSucessoQuizz);
 }
 
 function carregarTelaSucessoQuizz(resposta) {
+
     localStorage.setItem("id", resposta.data.id);
+
     const paginaAtual = document.querySelector(".niveisQuizz");
     const paginaDesejada = document.querySelector(".sucessoQuizz");
 
