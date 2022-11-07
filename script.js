@@ -15,6 +15,7 @@ function pegarQuizzes() {
     let promiseQuizzes = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
 
     promiseQuizzes.then(respostaQuizzes);
+    promiseQuizzes.catch(deuErro);
 
 };
 
@@ -36,7 +37,7 @@ function renderizar() {
     for (let i = 0; i < todosQuizzes.length; i++) {
         let objeto = todosQuizzes[i];
 
-        rend.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/>  <p> ${objeto.title} </p> </div> </div>`;
+        rend.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/><div class="degrade"></div>  <p> ${objeto.title} </p> </div> </div>`;
 
     };
 };
@@ -453,6 +454,7 @@ function carregarPaginaNiveisQuizz() {
 let arrayLevels = [];
 function verificacaoNiveisQuizz() {
     let verificarZero = '';
+    let arrayInicial = [];
 
         for (y = 0;y < niveis; y++){
             let temZero = Number(document.querySelector(`.acertoNivel${y + 1}`).value);
@@ -480,8 +482,10 @@ function verificacaoNiveisQuizz() {
                         minValue:acerto
                     };
             
-                    arrayLevels.push(arrayNivel);
+                    arrayInicial.push(arrayNivel);
             }
+
+            arrayLevels = arrayInicial;
         } else {
             return alert("Informação errada! Ajuste para prosseguir.")
         }
@@ -504,6 +508,11 @@ function realizarArrayPost() {
     let promisePost = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", arrayPost);
     
     promisePost.then(carregarTelaSucessoQuizz);
+    promisePost.catch(deuErro);
+}
+
+function deuErro(){
+    console.log("deu erro");
 }
 
 function carregarTelaSucessoQuizz(resposta) {
@@ -522,6 +531,13 @@ function carregarTelaSucessoQuizz(resposta) {
 }
 
 function carregarPaginaSucessoQuizz(){
+    let imagemSucesso = document.querySelector(".imgSucesso");
 
+    imagemSucesso.innerHTML += `
+    <div>
+        <img class="imgFinal23" src="${arrayPost.image}"/>
+        <div class="imgFinal"></div>
+    </div>
+    <div class="textoImg">${arrayPost.title}</div>`;
 }
 
