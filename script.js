@@ -497,12 +497,7 @@ function realizarArrayPost() {
     console.log(arrayPost);
 
 
-    mandarArrayPost();
-}
-
-function mandarArrayPost(){
-
-    let promisePost = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
+    let promisePost = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',arrayPost);
     
 
     promisePost.then(carregarTelaSucessoQuizz);
