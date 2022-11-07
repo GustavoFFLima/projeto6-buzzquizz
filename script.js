@@ -28,8 +28,6 @@ function respostaQuizzes(resposta) {
 
 function renderizar() {
 
-    console.log(todosQuizzes);
-
     let rend = document.querySelector(".todosQuizzes");
 
     for (let i = 0; i < todosQuizzes.length; i++) {
@@ -55,7 +53,12 @@ function segundaTela(id) {
         .then(renderizarSegundaTela)
 }
 
+let contadorRespostaFeitas = 0;
+let contadorAcerto = 0;
+let contadorQuestoes = 0;
+
 function renderizarSegundaTela(resposta){
+    contadorQuestoes = resposta.data.questions.length;
 
     let rend = document.querySelector(".segundaTela");
     rend.innerHTML = 
@@ -74,34 +77,39 @@ function renderizarSegundaTela(resposta){
             </div>  
             <div class="respostasQuizz"></div>
         </div>`;
-        console.log(resposta.data.questions);
-        console.log(resposta.data.questions[i].answers.length);
         for(let g = 0; g < resposta.data.questions[i].answers.length; g++) {
             let rend3 = document.querySelector(".questoesQuizz");
             rend3.children[i].children[1].innerHTML += 
-            `<div class="respostaPartida" data-charactes="${resposta.data.questions[i].answers[g].isCorrectAnswer}" onclick="respostaCorreta(this)">
+            `<div class="respostaPartida" data-charactes="${resposta.data.questions[i].answers[g].isCorrectAnswer}" onclick="respostaCorreta(this)" disabled="false">
                 <img class="imagemResposta" src="${resposta.data.questions[i].answers[g].image}"/>
                 <p class="tituloResposta">${resposta.data.questions[i].answers[g].text}</p>
             </div>`;
         };
     };
+    rend.innerHTML+= `<div class="resultadoTela desativada"></div>`
 
 };
 
 function respostaCorreta(selecionada) {
-    // function prato(itemClicado) {
-    //     const botaoSel = document.querySelector('.prato2');
-    //     if ( botaoSel !== null) {
-    //         botaoSel.classList.remove('prato2');
-    //         botaoSel.children[3].children[1].classList.add('prato1');
-    //     }
-    //     itemClicado.children[3].children[1].classList.toggle('prato1');
-    //     itemClicado.classList.toggle('prato2');
-    //     if (document.querySelector('.prato2') && document.querySelector('.bebida2') && document.querySelector('.sobremesa2')) {
-    //         document.querySelector('.botao').children[0].classList.add('comprafechada');
-    //     }
-    // }
-}
+    if(selecionada.getAttribute('data-charactes') == "true") {
+        contadorAcerto++;
+    }
+    contadorRespostaFeitas++;
+    //Andre coloca o chamado da sua fenção;
+    if(contadorRespostaFeitas == contadorQuestoes) {
+        resultados();
+    }
+};
+
+function resultados(){
+    const paginaDesejada = document.querySelector(".resultadoTela");
+
+    paginaDesejada.classList.add("atual");
+    paginaDesejada.classList.remove("desativada");
+
+    let resultado =  (contadorAcerto / contadorQuestoes) * 100;
+    paginaDesejada.innerHTML += `Você acertou ${resultado}, quer tentar mais uma vez?`
+};
 
 function terceiraTela() {
     const paginaAtual = document.querySelector(".atual");
