@@ -33,11 +33,18 @@ function respostaQuizzes(resposta) {
 function renderizar() {
 
     let rend = document.querySelector(".todosQuizzes");
+    let cabecalhoQuizz = document.querySelector(".quizzesprontos");
 
     for (let i = 0; i < todosQuizzes.length; i++) {
         let objeto = todosQuizzes[i];
 
-        rend.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/><div class="degrade"></div>  <p> ${objeto.title} </p> </div> </div>`;
+        if(objeto.id == meusQuizzes){
+            cabecalhoQuizz.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/><div class="degrade"></div>  <p> ${objeto.title} </p></div>`;
+        }else{
+            rend.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/><div class="degrade"></div>  <p> ${objeto.title} </p></div>`;
+        }
+
+       
 
     };
 };
@@ -61,11 +68,11 @@ let contadorRespostaFeitas = 0;
 let contadorAcerto = 0;
 let contadorQuestoes = 0;
 
-function comparador() { 
-	return Math.random() - 0.5; 
+function comparador() {
+    return Math.random() - 0.5;
 }
 
-function renderizarSegundaTela(resposta){
+function renderizarSegundaTela(resposta) {
     contadorQuestoes = resposta.data.questions.length;
     quizzSelecionado = resposta.data;
     niveldojogador = quizzSelecionado.levels;
@@ -89,39 +96,39 @@ function renderizarSegundaTela(resposta){
             </div>  
             <div class="respostasQuizz"></div>
         </div>`;
-        for(let g = 0; g < resposta.data.questions[i].answers.length; g++) {
+        for (let g = 0; g < resposta.data.questions[i].answers.length; g++) {
             let rend3 = document.querySelector(".questoesQuizz");
-            rend3.children[i].children[1].innerHTML += 
-            `<div class="respostaPartida" data-charactes="${resposta.data.questions[i].answers[g].isCorrectAnswer}" onclick="respostaCorreta(this)" disabled="false">
+            rend3.children[i].children[1].innerHTML +=
+                `<div class="respostaPartida" data-charactes="${resposta.data.questions[i].answers[g].isCorrectAnswer}" onclick="respostaCorreta(this)" disabled="false">
                 <img class="imagemResposta" src="${resposta.data.questions[i].answers[g].image}"/>
                 <p class="tituloResposta">${resposta.data.questions[i].answers[g].text}</p>
             </div>`;
         };
     };
-    rend.innerHTML+= `<div class="resultadoTela desativada"></div>`
+    rend.innerHTML += `<div class="resultadoTela desativada"></div>`
 
 };
 
 function respostaCorreta(selecionada) {
-    if(selecionada.getAttribute('data-charactes') == "true") {
+    if (selecionada.getAttribute('data-charactes') == "true") {
         contadorAcerto++;
     }
     contadorRespostaFeitas++;
     //Andre coloca o chamado da sua fenção;
-    if(contadorRespostaFeitas == contadorQuestoes) {
+    if (contadorRespostaFeitas == contadorQuestoes) {
         setTimeout(resultados, 2000);
     }
 };
 
-function resultados(){
+function resultados() {
     const paginaDesejada = document.querySelector(".resultadoTela");
 
     paginaDesejada.classList.add("atual");
     paginaDesejada.classList.remove("desativada");
 
-    let resultado =  (contadorAcerto / contadorQuestoes) * 100;
-    paginaDesejada.innerHTML += 
-    `<div>
+    let resultado = (contadorAcerto / contadorQuestoes) * 100;
+    paginaDesejada.innerHTML +=
+        `<div>
         <div class="tituloResultado">
             <p class="resultadoNivel">Você acertou ${parseInt(resultado)}%, quer tentar mais uma vez?</p>
         </div>
@@ -144,13 +151,13 @@ function resultados(){
     elementoQueQueroQueApareca.scrollIntoView();
 };
 
-function reiniciar() { 
+function reiniciar() {
     contadorRespostaFeitas = 0;
     contadorAcerto = 0;
     contadorQuestoes = 0;
 
     let apagar = document.querySelector(".todosQuizzes");
-    apagar.innerHTML =``;
+    apagar.innerHTML = ``;
     renderizar();
     segundaTela(quizzSelecionado.id);
 };
@@ -290,7 +297,7 @@ function verificacaoPerguntasQuizz() {
         let image4 = document.querySelector(`.imagemTela34${i + 1}`).value;
         let letras = ['g', "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-       
+
         //verificacao do titulo, da cor e do texto e imagem das perguntas
         if (title.length < 20) {
             return alert("Informação errada! Ajuste para prosseguir.");
@@ -303,7 +310,7 @@ function verificacaoPerguntasQuizz() {
                 }
             }
 
-            if ((text1 !== '' && checkUrl(image1) == true && image1!='') && ((text2 !== '' && checkUrl(image2) == true && image2!='') || (text3 !== '' && checkUrl(image3) == true && image3!='') || (text4 !== '' && checkUrl(image4) == true && image4!=''))) {
+            if ((text1 !== '' && checkUrl(image1) == true && image1 != '') && ((text2 !== '' && checkUrl(image2) == true && image2 != '') || (text3 !== '' && checkUrl(image3) == true && image3 != '') || (text4 !== '' && checkUrl(image4) == true && image4 != ''))) {
 
             } else {
                 return alert("Informação errada! Ajuste para prosseguir.");
@@ -456,62 +463,62 @@ function verificacaoNiveisQuizz() {
     let verificarZero = '';
     let arrayInicial = [];
 
-        for (y = 0;y < niveis; y++){
-            let temZero = Number(document.querySelector(`.acertoNivel${y + 1}`).value);
-            if(temZero == 0){
-                verificarZero += 1;
-            }
+    for (y = 0; y < niveis; y++) {
+        let temZero = Number(document.querySelector(`.acertoNivel${y + 1}`).value);
+        if (temZero == 0) {
+            verificarZero += 1;
         }
+    }
 
-        if(verificarZero ==1){
+    if (verificarZero == 1) {
 
-            for (let i = 0; i < niveis; i++) {
-                let title = document.querySelector(`.tituloNivel${i + 1}`).value;
-                let acerto = Number(document.querySelector(`.acertoNivel${i + 1}`).value);
-                let url = document.querySelector(`.urlNivel${i + 1}`).value;
-                let descricao = document.querySelector(`.descricaoNivel${i + 1}`).value;
-                
-                    if (title.length < 10 || acerto > 100 || acerto < 0 || checkUrl(url) == false || descricao < 30){
-                        return alert("Informação errada! Ajuste para prosseguir.");
-                    }
-            
-                    let arrayNivel = {
-                        title:title,
-                        image:url,
-                        text:descricao,
-                        minValue:acerto
-                    };
-            
-                    arrayInicial.push(arrayNivel);
+        for (let i = 0; i < niveis; i++) {
+            let title = document.querySelector(`.tituloNivel${i + 1}`).value;
+            let acerto = Number(document.querySelector(`.acertoNivel${i + 1}`).value);
+            let url = document.querySelector(`.urlNivel${i + 1}`).value;
+            let descricao = document.querySelector(`.descricaoNivel${i + 1}`).value;
+
+            if (title.length < 10 || acerto > 100 || acerto < 0 || checkUrl(url) == false || descricao < 30) {
+                return alert("Informação errada! Ajuste para prosseguir.");
             }
 
-            arrayLevels = arrayInicial;
-        } else {
-            return alert("Informação errada! Ajuste para prosseguir.")
+            let arrayNivel = {
+                title: title,
+                image: url,
+                text: descricao,
+                minValue: acerto
+            };
+
+            arrayInicial.push(arrayNivel);
         }
 
-        realizarArrayPost();
+        arrayLevels = arrayInicial;
+    } else {
+        return alert("Informação errada! Ajuste para prosseguir.")
+    }
+
+    realizarArrayPost();
 }
 
 
 function realizarArrayPost() {
 
     arrayPost = {
-        title:titleImage.title,
-        image:titleImage.image,
-        questions:questions,
-        levels:arrayLevels
+        title: titleImage.title,
+        image: titleImage.image,
+        questions: questions,
+        levels: arrayLevels
     };
 
     console.log(arrayPost);
 
     let promisePost = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", arrayPost);
-    
+
     promisePost.then(carregarTelaSucessoQuizz);
     promisePost.catch(deuErro);
 }
 
-function deuErro(){
+function deuErro() {
     console.log("deu erro");
 }
 
@@ -530,7 +537,7 @@ function carregarTelaSucessoQuizz(resposta) {
     carregarPaginaSucessoQuizz();
 }
 
-function carregarPaginaSucessoQuizz(){
+function carregarPaginaSucessoQuizz() {
     let imagemSucesso = document.querySelector(".imgSucesso");
 
     imagemSucesso.innerHTML += `
