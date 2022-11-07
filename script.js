@@ -40,12 +40,16 @@ function renderizar() {
     for (let i = 0; i < todosQuizzes.length; i++) {
         let objeto = todosQuizzes[i];
 
-        for ( let y = 0; y<meusQuizzes.length;y++){
-            if(objeto.id  == meusQuizzes[y]){
-                cabecalhoQuizz.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/><div class="degrade"></div>  <p> ${objeto.title} </p></div>`;
-        } else {
+        
+
+        if(objeto.id == meusQuizzes){
+            cabecalhoQuizz.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/><div class="degrade"></div>  <p> ${objeto.title} </p></div>`;
+        }else{
             rend.innerHTML += `<div class="gameQuizzes" onclick = "segundaTela (${objeto.id})"> <img class="img-quizz" src="${objeto.image}"/><div class="degrade"></div>  <p> ${objeto.title} </p></div>`;
         }
+
+       
+
     };
 };
 
