@@ -517,7 +517,7 @@ function deuErro(){
 }
 
 function carregarTelaSucessoQuizz(resposta) {
-    meusQuizzes = [id];  
+    meusQuizzes.push(resposta.id);  
     const meusQuizzesSerializado = JSON.stringify(meusQuizzes); 
     localStorage.setItem("lista", meusQuizzesSerializado);
 
